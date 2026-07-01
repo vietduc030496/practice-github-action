@@ -7,8 +7,16 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Get Code
+        uses: actions/checkout@v7
+      - name: Install NodeJS
+        uses: actions/setup-node@v6
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
       - name: Run lint
-        run: npm lint
+        run: npm run lint
       - name: Run test
         run: npm test
       - name: Deploy
